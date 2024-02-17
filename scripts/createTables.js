@@ -8,18 +8,42 @@ const initializeTables = async () => {
     await db.query('BEGIN');
 
     await db.query(
+      'CREATE TABLE IF NOT EXISTS individual_landlords (' +
+        'id SERIAL PRIMARY KEY, ' +
+        'name VARCHAR(255), ' +
+        'identification_no VARCHAR(255) UNIQUE, ' +
+        'identification_type VARCHAR(255), ' +
+        'identification_exp DATE, ' +
+        'alternate_identification_no VARCHAR(255) UNIQUE, ' +
+        'alternate_identification_type VARCHAR(255), ' +
+        'alternate_identification_exp DATE, ' +
+        'nationality VARCHAR(255), ' +
+        'address VARCHAR(255), ' +
+        'email VARCHAR(255) UNIQUE, ' +
+        'mobile VARCHAR(255) UNIQUE, ' +
+        'telephone VARCHAR(255), ' +
+        'fax VARCHAR(255), ' +
+        'po_box VARCHAR(255) ' +
+        ');',
+    );
+
+    await db.query(
       'CREATE TABLE IF NOT EXISTS company_landlords_contacts (' +
         'id SERIAL PRIMARY KEY, ' +
         'name VARCHAR(255), ' +
-        'address VARCHAR(255), ' +
-        'passport_no VARCHAR(255) UNIQUE, ' +
-        'eid_no VARCHAR(255) UNIQUE, ' +
+        'identification_no VARCHAR(255) UNIQUE, ' +
+        'identification_type VARCHAR(255), ' +
+        'identification_exp DATE, ' +
+        'alternate_identification_no VARCHAR(255) UNIQUE, ' +
+        'alternate_identification_type VARCHAR(255), ' +
+        'alternate_identification_exp DATE, ' +
         'nationality VARCHAR(255), ' +
-        'tel_no VARCHAR(255), ' +
-        'mobile_no VARCHAR(255), ' +
-        'fax_no VARCHAR(255), ' +
-        'po_box_no VARCHAR(255), ' +
-        'email_address VARCHAR(255) ' +
+        'address VARCHAR(255), ' +
+        'email VARCHAR(255) UNIQUE, ' +
+        'mobile VARCHAR(255) UNIQUE, ' +
+        'telephone VARCHAR(255), ' +
+        'fax VARCHAR(255), ' +
+        'po_box VARCHAR(255) ' +
         ');',
     );
 
@@ -27,31 +51,15 @@ const initializeTables = async () => {
       'CREATE TABLE IF NOT EXISTS company_landlords (' +
         'id SERIAL PRIMARY KEY, ' +
         'name VARCHAR(255), ' +
-        'address VARCHAR(255), ' +
         'trade_license VARCHAR(255) UNIQUE, ' +
-        'tel_no VARCHAR(255), ' +
-        'mobile_no VARCHAR(255), ' +
-        'fax_no VARCHAR(255), ' +
-        'po_box_no VARCHAR(255), ' +
-        'email_address VARCHAR(255), ' +
+        'trade_license_exp DATE, ' +
+        'address VARCHAR(255), ' +
+        'email VARCHAR(255), ' +
+        'telephone VARCHAR(255), ' +
+        'fax VARCHAR(255), ' +
+        'po_box VARCHAR(255), ' +
         'contact_person INT, ' +
         'FOREIGN KEY (contact_person) REFERENCES company_landlords_contacts(id) ' +
-        ');',
-    );
-
-    await db.query(
-      'CREATE TABLE IF NOT EXISTS individual_landlords (' +
-        'id SERIAL PRIMARY KEY, ' +
-        'name VARCHAR(255), ' +
-        'address VARCHAR(255), ' +
-        'passport_no VARCHAR(255) UNIQUE, ' +
-        'eid_no VARCHAR(255) UNIQUE, ' +
-        'nationality VARCHAR(255), ' +
-        'tel_no VARCHAR(255), ' +
-        'mobile_no VARCHAR(255), ' +
-        'fax_no VARCHAR(255), ' +
-        'po_box_no VARCHAR(255), ' +
-        'email_address VARCHAR(255) ' +
         ');',
     );
 
