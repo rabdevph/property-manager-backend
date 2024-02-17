@@ -6,7 +6,7 @@ const logErrors = (err, req, res, next) => {
 };
 
 const errorHandler = (err, req, res, next) => {
-  const statusCode = res.statusCode ? res.statusCode : 500;
+  const statusCode = err.statusCode ? err.statusCode : 500;
 
   res.status(statusCode);
 
