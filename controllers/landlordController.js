@@ -15,7 +15,7 @@ const fieldDisplayNames = {
 // @desc    Check identifications
 // @route   POST /api/landlords/check-identifications
 // @access  Public
-const checkLandlordIdentifications = async (req, res, next) => {
+const checkIndividualLandlordIdentifications = async (req, res, next) => {
   try {
     const errorFields = validateEmptyInputs(
       req.body,
@@ -67,7 +67,7 @@ const checkLandlordIdentifications = async (req, res, next) => {
 // @desc    Check details
 // @desc    POST /api/landlords/check-details
 // @desc    Public
-const checkLandlordDetails = async (req, res, next) => {
+const checkIndividualLandlordDetails = async (req, res, next) => {
   try {
     const errorFields = validateEmptyInputs(
       req.body,
@@ -157,7 +157,11 @@ const registerIndividualLandlord = async (req, res, next) => {
 // @route   POST /api/landlords/register-company-landlord
 // @access  Public
 const registerCompanyLandlord = (req, res, next) => {
-  res.status(200).json({ message: 'register new company landlord' });
+  try {
+    //
+  } catch (err) {
+    next(err);
+  }
 };
 
 // @desc    Register company landlord contact person
@@ -168,8 +172,8 @@ const registerCompanyLandlordContact = (req, res, next) => {
 };
 
 module.exports = {
-  checkLandlordIdentifications,
-  checkLandlordDetails,
+  checkIndividualLandlordIdentifications,
+  checkIndividualLandlordDetails,
   registerIndividualLandlord,
   registerCompanyLandlord,
   registerCompanyLandlordContact,
