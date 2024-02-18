@@ -3,7 +3,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const colors = require('colors');
 
-const landlordRoutes = require('./routes/landlordRoutes');
+const mountRoutes = require('./routes');
 
 const { logErrors, errorHandler } = require('./middleware/errorMiddleware');
 
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/api/landlords', landlordRoutes);
+mountRoutes(app);
 
 app.use(logErrors);
 app.use(errorHandler);
