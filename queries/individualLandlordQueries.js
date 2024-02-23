@@ -30,6 +30,14 @@ const checkMobileQuery = async (data) => {
   return rows[0];
 };
 
+const getAllLandlordQuery = async () => {
+  const { rows } = await db.query(
+    'SELECT * FROM individual_landlords ORDER BY id;',
+  );
+
+  return rows;
+};
+
 const registerLandlordQuery = async (data) => {
   const { rows } = await db.query(
     'INSERT INTO individual_landlords ' +
@@ -62,5 +70,6 @@ module.exports = {
   checkIdentificationsQuery,
   checkMobileQuery,
   checkEmailQuery,
+  getAllLandlordQuery,
   registerLandlordQuery,
 };

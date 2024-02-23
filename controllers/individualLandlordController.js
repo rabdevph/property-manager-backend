@@ -169,6 +169,19 @@ const checkDetails = async (req, res, next) => {
   }
 };
 
+// @desc    Get all individual landlords
+// @route   GET /api/landlords/individual/get-all
+// @route   Private
+const getAll = async (req, res, next) => {
+  try {
+    const allLandlords = await individualLandlordQueries.getAllLandlordQuery();
+
+    res.status(200).json(allLandlords);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // @desc    Register new individual landlord
 // @route   POST /api/landlords/individual/register
 // @access  Private
@@ -208,5 +221,6 @@ const register = async (req, res, next) => {
 module.exports = {
   checkIdentifications,
   checkDetails,
+  getAll,
   register,
 };
